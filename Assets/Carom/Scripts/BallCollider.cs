@@ -15,12 +15,12 @@ public class BallCollider : MonoBehaviour
 
             Vector3 posicionBolaBlanca = other.gameObject.transform.position;
             Quaternion rotacionBolaBlanca = other.gameObject.transform.rotation;
-            GameObject nuevaBolaRoja = Instantiate(bolaRoja, posicionBolaBlanca, rotacionBolaBlanca);
+            GameObject nuevaBolaRoja = Instantiate(this.bolaRoja, posicionBolaBlanca, rotacionBolaBlanca);
 
-            Rigidbody bolaRojaRigidBody = bolaRoja.GetComponent<Rigidbody>();
+            Rigidbody bolaRojaRigidBody = this.bolaRoja.GetComponent<Rigidbody>();
             Rigidbody nuevaBolaRojaRigidBody = nuevaBolaRoja.GetComponent<Rigidbody>();
 
-            nuevaBolaRojaRigidBody.AddForce(bolaRojaRigidBody.velocity * multiplicadorFuerzaColision);
+            nuevaBolaRojaRigidBody.AddForce(bolaRojaRigidBody.velocity * this.multiplicadorFuerzaColision);
         }
     }
 }
