@@ -6,11 +6,13 @@ TagManager:
   tags:
   - BolaRoja
   - BolaBlanca
+  - Slide
+  - Wall
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Arbol
   - Water
   - UI
   - 
