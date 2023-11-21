@@ -1120,7 +1120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 936386424162100430, guid: b3dd8dffe2eaf0b458dce81067694271, type: 3}
       propertyPath: m_TagString
-      value: BolaBlanca
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2766162026408618467, guid: b3dd8dffe2eaf0b458dce81067694271, type: 3}
       propertyPath: m_TagString
@@ -1171,6 +1171,51 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3dd8dffe2eaf0b458dce81067694271, type: 3}
+--- !u!1 &700159063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 700159065}
+  - component: {fileID: 700159064}
+  m_Layer: 0
+  m_Name: GameSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &700159064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700159063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bfd292a71dc1a64eaefac03e328d6af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuNivelComletado: {fileID: 772712448}
+--- !u!4 &700159065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700159063}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 33.49038, y: 9.776749, z: 1.7966398}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &732419968
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,7 +1708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 936386424162100430, guid: b3dd8dffe2eaf0b458dce81067694271, type: 3}
       propertyPath: m_TagString
-      value: BolaBlanca
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2766162026408618467, guid: b3dd8dffe2eaf0b458dce81067694271, type: 3}
       propertyPath: m_TagString
@@ -4494,3 +4539,4 @@ SceneRoots:
   - {fileID: 732419972}
   - {fileID: 1915141454}
   - {fileID: 1345414743}
+  - {fileID: 700159065}
