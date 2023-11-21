@@ -697,6 +697,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23693811526290372, guid: 783807170dc366141aaaeb44eec96c04, type: 3}
+      propertyPath: m_ReceiveGI
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1229,7 +1233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12d8de1f82f4a304c99c05a475dc729f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuNivelCompletado: {fileID: 0}
+  menuNivelCompletado: {fileID: 421186881}
   siguienteNivel: {fileID: 102900000, guid: 85772d7a43bdaf848bdeece1690ee84b, type: 3}
 --- !u!114 &421186884
 MonoBehaviour:
@@ -3132,6 +3136,10 @@ PrefabInstance:
     - target: {fileID: 4399376854586962, guid: 783807170dc366141aaaeb44eec96c04, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23693811526290372, guid: 783807170dc366141aaaeb44eec96c04, type: 3}
+      propertyPath: m_ReceiveGI
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
