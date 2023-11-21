@@ -6,6 +6,7 @@ public class BallCollider : MonoBehaviour
 {
     [SerializeField] GameObject bolaRoja = null;
     [SerializeField] float multiplicadorFuerzaColision = 50.0f;
+    [SerializeField] AudioSource sonidoConversion;
 
     void OnTriggerEnter(Collider other)
     {
@@ -21,6 +22,7 @@ public class BallCollider : MonoBehaviour
             Rigidbody nuevaBolaRojaRigidBody = nuevaBolaRoja.GetComponent<Rigidbody>();
 
             nuevaBolaRojaRigidBody.AddForce(bolaRojaRigidBody.velocity * this.multiplicadorFuerzaColision);
+            sonidoConversion.Play();
         }
     }
 }
