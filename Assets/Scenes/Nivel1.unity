@@ -439,7 +439,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1701665069940125537, guid: c422a45ea6c66b74497e5d527da8c6a5, type: 3}
       propertyPath: m_TagString
-      value: BolaRoja
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5280985443860661395, guid: c422a45ea6c66b74497e5d527da8c6a5, type: 3}
       propertyPath: m_Name
@@ -1120,11 +1120,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 936386424162100430, guid: b3dd8dffe2eaf0b458dce81067694271, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: BolaBlanca
       objectReference: {fileID: 0}
     - target: {fileID: 2766162026408618467, guid: b3dd8dffe2eaf0b458dce81067694271, type: 3}
       propertyPath: m_TagString
-      value: BolaBlanca
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6081730139343251836, guid: b3dd8dffe2eaf0b458dce81067694271, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1708,11 +1708,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 936386424162100430, guid: b3dd8dffe2eaf0b458dce81067694271, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: BolaBlanca
       objectReference: {fileID: 0}
     - target: {fileID: 2766162026408618467, guid: b3dd8dffe2eaf0b458dce81067694271, type: 3}
       propertyPath: m_TagString
-      value: BolaBlanca
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6081730139343251836, guid: b3dd8dffe2eaf0b458dce81067694271, type: 3}
       propertyPath: m_LocalPosition.x
