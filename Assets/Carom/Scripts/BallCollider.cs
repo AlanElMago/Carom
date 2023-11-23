@@ -14,8 +14,7 @@ public class BallCollider : MonoBehaviour
         if ( other.gameObject.CompareTag("BolaBlanca") ) {
             other.gameObject.SetActive(false);
 
-            Vector3 posicionBolaBlanca = other.gameObject.transform.position;
-            Quaternion rotacionBolaBlanca = other.gameObject.transform.rotation;
+            other.gameObject.transform.GetPositionAndRotation(out Vector3 posicionBolaBlanca, out Quaternion rotacionBolaBlanca);
             GameObject nuevaBolaRoja = Instantiate(this.bolaRoja, posicionBolaBlanca, rotacionBolaBlanca);
 
             Rigidbody bolaRojaRigidBody = this.bolaRoja.GetComponent<Rigidbody>();

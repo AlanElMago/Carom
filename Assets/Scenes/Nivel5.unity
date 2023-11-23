@@ -7782,6 +7782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuNivelComletado: {fileID: 1443166112}
+  menuPerdiste: {fileID: 547385055}
 --- !u!4 &2027803815
 Transform:
   m_ObjectHideFlags: 0
