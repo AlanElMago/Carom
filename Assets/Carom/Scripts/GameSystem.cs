@@ -16,53 +16,64 @@ public class GameSystem : MonoBehaviour
     private bool eventoGanarActivado = false;
     private bool eventoPerderActivado = false;
 
-    public static int puntaje;
-
     [SerializeField] GameObject menuNivelComletado;
     [SerializeField] GameObject menuPerdiste;
     [SerializeField] TextMeshProUGUI puntajeText;
     [SerializeField] int puntajeObjetivo;
+
+    private int BolasBlancasRestantes {
+        get
+        {
+            int cantidad = 0;
+
+            foreach(GameObject bolaBlanca in bolasBlancas) {
+                if (bolaBlanca.activeSelf) { cantidad++; }
+            }
+
+            return cantidad;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         this.bolasBlancas = GameObject.FindGameObjectsWithTag("BolaBlanca");
         this.bolasRojas = GameObject.FindGameObjectsWithTag("BolaRoja");
-        puntaje = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        ActualizarPuntaje();
-        if (!AlMenosUnaBolaBlancaEstaActiva() && estadoJuego == EstadosJuego.EnProceso)
+        this.ActualizarPuntaje();
+
+        if (!this.AlMenosUnaBolaBlancaEstaActiva() && this.estadoJuego == EstadosJuego.EnProceso)
         {
-            retrasoNivelAcabado = DateTime.Now.AddSeconds(1);
-            estadoJuego = EstadosJuego.Gano;
+            this.retrasoNivelAcabado = DateTime.Now.AddSeconds(1);
+            this.estadoJuego = EstadosJuego.Gano;
         }
 
-        if (estadoJuego == EstadosJuego.Gano && DateTime.Now >= retrasoNivelAcabado && !eventoGanarActivado)
+        if (this.estadoJuego == EstadosJuego.Gano && DateTime.Now >= this.retrasoNivelAcabado && !this.eventoGanarActivado)
         {
-            menuNivelComletado.SetActive(true);
-            eventoGanarActivado = true;
+            this.menuNivelComletado.SetActive(true);
+            this.eventoGanarActivado = true;
         }
 
-        if (!AlMenosUnaBolaRojaEstaActiva() && estadoJuego == EstadosJuego.EnProceso)
+        if (!this.AlMenosUnaBolaRojaEstaActiva() && this.estadoJuego == EstadosJuego.EnProceso)
         {
-            retrasoNivelAcabado = DateTime.Now.AddSeconds(1);
-            estadoJuego = EstadosJuego.Perdio;
+            this.retrasoNivelAcabado = DateTime.Now.AddSeconds(1);
+            this.estadoJuego = EstadosJuego.Perdio;
         }
 
-        if (estadoJuego == EstadosJuego.Perdio && DateTime.Now >= retrasoNivelAcabado && !eventoPerderActivado)
+        if (this.estadoJuego == EstadosJuego.Perdio && DateTime.Now >= this.retrasoNivelAcabado && !this.eventoPerderActivado)
         {
-            menuPerdiste.SetActive(true);
-            eventoPerderActivado = true;
+            this.menuPerdiste.SetActive(true);
+            this.eventoPerderActivado = true;
         }
     }
 
     bool AlMenosUnaBolaBlancaEstaActiva()
     {
-        foreach(GameObject bolaBlanca in bolasBlancas)
+        foreach(GameObject bolaBlanca in this.bolasBlancas)
         {
             if (bolaBlanca.activeSelf) { return true; }
         }
@@ -72,7 +83,7 @@ public class GameSystem : MonoBehaviour
 
     bool AlMenosUnaBolaRojaEstaActiva()
     {
-        foreach(GameObject bolaRoja in bolasRojas)
+        foreach(GameObject bolaRoja in this.bolasRojas)
         {
             if (bolaRoja.activeSelf) { return true; }
         }
@@ -80,12 +91,11 @@ public class GameSystem : MonoBehaviour
         return false;
     }
 
-
     void ActualizarPuntaje()
-    {    
-        if (puntajeText != null)
+    {
+        if (this.puntajeText != null)
         {
-            puntajeText.text = "Puntaje: " + puntaje.ToString() + "/" + puntajeObjetivo.ToString();
+            this.puntajeText.text = "Bolas Blancas Restantes: " + this.BolasBlancasRestantes;
         }
     }
 }
