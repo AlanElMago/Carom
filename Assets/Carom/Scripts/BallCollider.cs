@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BallCollider : MonoBehaviour
@@ -22,6 +23,9 @@ public class BallCollider : MonoBehaviour
 
             nuevaBolaRojaRigidBody.AddForce(bolaRojaRigidBody.velocity * this.multiplicadorFuerzaColision);
             sonidoConversion.Play();
+
+            GameSystem.tirosRestantes += GameSystem._recuperacionTiros;
+            GameSystem.bolasRojas.Add(nuevaBolaRoja);
         }
     }
 }
