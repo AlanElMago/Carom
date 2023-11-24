@@ -13,6 +13,8 @@ public class GameSystem : MonoBehaviour
 
     internal static int tirosRestantes = 0;
     [SerializeField] int tirosRestantesIniciales = 20;
+    internal static int _recuperacionTiros = 0;
+    [SerializeField] int recuperacionTiros = 1;
 
     private GameObject[] bolasBlancas;
     private GameObject[] bolasRojas;
@@ -45,6 +47,7 @@ public class GameSystem : MonoBehaviour
         this.bolasBlancas = GameObject.FindGameObjectsWithTag("BolaBlanca");
         this.bolasRojas = GameObject.FindGameObjectsWithTag("BolaRoja");
         GameSystem.tirosRestantes = this.tirosRestantesIniciales;
+        GameSystem._recuperacionTiros = this.recuperacionTiros;
     }
 
     // Update is called once per frame

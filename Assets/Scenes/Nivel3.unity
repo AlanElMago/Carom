@@ -1977,6 +1977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tirosRestantesIniciales: 10
+  recuperacionTiros: 2
   menuNivelComletado: {fileID: 51004444}
   menuPerdiste: {fileID: 2096488516}
   bolasBlancasRestantesText: {fileID: 894060868}

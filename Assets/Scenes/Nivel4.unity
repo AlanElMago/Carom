@@ -1300,8 +1300,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 396670133}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.046754543, y: 0.042985212, z: 0.001936998, w: -0.9979792}
-  m_LocalPosition: {x: 618.04504, y: -367.1519, z: -507.241}
+  m_LocalRotation: {x: 0.057783164, y: 0.9412307, z: 0.2108347, w: -0.25747752}
+  m_LocalPosition: {x: 24.858175, y: -1.671823, z: 47.921387}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4256,6 +4256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tirosRestantesIniciales: 10
+  recuperacionTiros: 2
   menuNivelComletado: {fileID: 48937783}
   menuPerdiste: {fileID: 703322906}
   bolasBlancasRestantesText: {fileID: 1613924463}

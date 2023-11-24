@@ -22,6 +22,8 @@ public class BallCollider : MonoBehaviour
 
             nuevaBolaRojaRigidBody.AddForce(bolaRojaRigidBody.velocity * this.multiplicadorFuerzaColision);
             sonidoConversion.Play();
+
+            GameSystem.tirosRestantes += GameSystem._recuperacionTiros;
         }
     }
 }

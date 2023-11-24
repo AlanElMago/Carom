@@ -7917,6 +7917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tirosRestantesIniciales: 15
+  recuperacionTiros: 3
   menuNivelComletado: {fileID: 1443166112}
   menuPerdiste: {fileID: 547385055}
   bolasBlancasRestantesText: {fileID: 2045864133}
