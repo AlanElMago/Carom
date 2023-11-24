@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using TMPro; 
 using UnityEngine;
@@ -16,8 +17,8 @@ public class GameSystem : MonoBehaviour
     internal static int _recuperacionTiros = 0;
     [SerializeField] int recuperacionTiros = 1;
 
-    private GameObject[] bolasBlancas;
-    private GameObject[] bolasRojas;
+    internal static List<GameObject> bolasBlancas;
+    internal static List<GameObject> bolasRojas;
 
     private DateTime tiempoExtra;
 
@@ -32,7 +33,7 @@ public class GameSystem : MonoBehaviour
         {
             int cantidad = 0;
 
-            foreach(GameObject bolaBlanca in bolasBlancas) {
+            foreach(GameObject bolaBlanca in GameSystem.bolasBlancas) {
                 if (bolaBlanca.activeSelf) { cantidad++; }
             }
 
@@ -44,8 +45,8 @@ public class GameSystem : MonoBehaviour
     void Start()
     {
         GameSystem.estadoJuego = GameSystem.EstadosJuego.EnProceso;
-        this.bolasBlancas = GameObject.FindGameObjectsWithTag("BolaBlanca");
-        this.bolasRojas = GameObject.FindGameObjectsWithTag("BolaRoja");
+        GameSystem.bolasBlancas = GameObject.FindGameObjectsWithTag("BolaBlanca").ToList();
+        GameSystem.bolasRojas = GameObject.FindGameObjectsWithTag("BolaRoja").ToList();
         GameSystem.tirosRestantes = this.tirosRestantesIniciales;
         GameSystem._recuperacionTiros = this.recuperacionTiros;
     }
@@ -75,7 +76,7 @@ public class GameSystem : MonoBehaviour
 
     bool AlMenosUnaBolaBlancaEstaActiva()
     {
-        foreach(GameObject bolaBlanca in this.bolasBlancas)
+        foreach(GameObject bolaBlanca in GameSystem.bolasBlancas)
         {
             if (bolaBlanca.activeSelf) { return true; }
         }
@@ -85,7 +86,7 @@ public class GameSystem : MonoBehaviour
 
     bool AlMenosUnaBolaRojaEstaActiva()
     {
-        foreach(GameObject bolaRoja in this.bolasRojas)
+        foreach(GameObject bolaRoja in GameSystem.bolasRojas)
         {
             if (bolaRoja.activeSelf) { return true; }
         }
