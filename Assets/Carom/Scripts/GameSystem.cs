@@ -7,8 +7,9 @@ using UnityEngine;
 
 public class GameSystem : MonoBehaviour
 {
-    internal enum EstadosJuego { EnProceso, Gano, Perdio }
+    internal enum EstadosJuego { EnProceso, TiempoExtra, Evaluacion, Terminado }
     internal static EstadosJuego estadoJuego = EstadosJuego.EnProceso;
+    private bool ganaUltimoTiro = false;
 
     internal static int tirosRestantes = 0;
     [SerializeField] int tirosRestantesIniciales = 20;
@@ -16,9 +17,7 @@ public class GameSystem : MonoBehaviour
     private GameObject[] bolasBlancas;
     private GameObject[] bolasRojas;
 
-    private DateTime retrasoNivelAcabado;
-    private bool eventoGanarActivado = false;
-    private bool eventoPerderActivado = false;
+    private DateTime tiempoExtra;
 
     [SerializeField] GameObject menuNivelComletado;
     [SerializeField] GameObject menuPerdiste;
@@ -53,28 +52,21 @@ public class GameSystem : MonoBehaviour
     {
         this.ActualizarDatos();
 
-        if (!this.AlMenosUnaBolaBlancaEstaActiva() && GameSystem.tirosRestantes > 0 && GameSystem.estadoJuego != EstadosJuego.Gano)
-        {
-            this.retrasoNivelAcabado = DateTime.Now.AddSeconds(1);
-            GameSystem.estadoJuego = EstadosJuego.Gano;
+        // Evaluar para tiempo extra
+        if (GameSystem.estadoJuego == GameSystem.EstadosJuego.EnProceso && (!this.AlMenosUnaBolaBlancaEstaActiva() || !this.AlMenosUnaBolaRojaEstaActiva() || GameSystem.tirosRestantes <= 0)) {
+            GameSystem.estadoJuego = GameSystem.EstadosJuego.TiempoExtra;
         }
 
-        if (GameSystem.estadoJuego == EstadosJuego.Gano && DateTime.Now >= this.retrasoNivelAcabado && !this.eventoGanarActivado)
-        {
-            this.menuNivelComletado.SetActive(true);
-            this.eventoGanarActivado = true;
+        // Evaluar cantidad de tiempo extra
+        if (GameSystem.estadoJuego == GameSystem.EstadosJuego.TiempoExtra) {
+            int segundosTiempoExtra = GameSystem.tirosRestantes > 0 ? 1 : 10;
+            this.tiempoExtra = DateTime.Now.AddSeconds(segundosTiempoExtra);
+            GameSystem.estadoJuego = GameSystem.EstadosJuego.Evaluacion;
         }
 
-        if ((!this.AlMenosUnaBolaRojaEstaActiva() || GameSystem.tirosRestantes <= 0) && GameSystem.estadoJuego == EstadosJuego.EnProceso)
-        {
-            this.retrasoNivelAcabado = GameSystem.tirosRestantes > 0 ? DateTime.Now.AddSeconds(1) : DateTime.Now.AddSeconds(11);
-            GameSystem.estadoJuego = EstadosJuego.Perdio;
-        }
-
-        if (GameSystem.estadoJuego == EstadosJuego.Perdio && (DateTime.Now >= this.retrasoNivelAcabado || tirosRestantes < 0) && !this.eventoPerderActivado)
-        {
-            this.menuPerdiste.SetActive(true);
-            this.eventoPerderActivado = true;
+        // Intentar terminar juego
+        if (GameSystem.estadoJuego == GameSystem.EstadosJuego.Evaluacion) {
+            TerminarJuego();
         }
     }
 
@@ -96,6 +88,33 @@ public class GameSystem : MonoBehaviour
         }
 
         return false;
+    }
+
+    void TerminarJuego()
+    {
+        if (GameSystem.tirosRestantes < 0) {
+            this.menuPerdiste.SetActive(true);
+            GameSystem.estadoJuego = GameSystem.EstadosJuego.Terminado;
+            return;
+        }
+
+        if (!AlMenosUnaBolaBlancaEstaActiva() && !this.ganaUltimoTiro) {
+            this.tiempoExtra = DateTime.Now.AddSeconds(1);
+            this.ganaUltimoTiro = true;
+        }
+
+        if (DateTime.Now < tiempoExtra) {
+            return;
+        }
+
+        if (AlMenosUnaBolaBlancaEstaActiva()) {
+            this.menuPerdiste.SetActive(true);
+            GameSystem.estadoJuego = GameSystem.EstadosJuego.Terminado;
+            return;
+        }
+
+        this.menuNivelComletado.SetActive(true); 
+        GameSystem.estadoJuego = GameSystem.EstadosJuego.Terminado;
     }
 
     void ActualizarDatos()
