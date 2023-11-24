@@ -7,62 +7,80 @@ using UnityEngine;
 
 public class GameSystem : MonoBehaviour
 {
-    private enum EstadosJuego { EnProceso, Gano, Perdio }
+    internal enum EstadosJuego { EnProceso, Gano, Perdio }
+    internal static EstadosJuego estadoJuego = EstadosJuego.EnProceso;
+
+    internal static int tirosRestantes = 0;
+    [SerializeField] int tirosRestantesIniciales = 20;
+
     private GameObject[] bolasBlancas;
     private GameObject[] bolasRojas;
-    private EstadosJuego estadoJuego = EstadosJuego.EnProceso;
 
     private DateTime retrasoNivelAcabado;
     private bool eventoGanarActivado = false;
     private bool eventoPerderActivado = false;
 
-    public static int puntaje;
-
     [SerializeField] GameObject menuNivelComletado;
     [SerializeField] GameObject menuPerdiste;
-    [SerializeField] TextMeshProUGUI puntajeText;
-    [SerializeField] int puntajeObjetivo;
+
+    [SerializeField] TextMeshProUGUI bolasBlancasRestantesText;
+    [SerializeField] TextMeshProUGUI tirosRestantesText;
+
+    private int BolasBlancasRestantes {
+        get
+        {
+            int cantidad = 0;
+
+            foreach(GameObject bolaBlanca in bolasBlancas) {
+                if (bolaBlanca.activeSelf) { cantidad++; }
+            }
+
+            return cantidad;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        GameSystem.estadoJuego = GameSystem.EstadosJuego.EnProceso;
         this.bolasBlancas = GameObject.FindGameObjectsWithTag("BolaBlanca");
         this.bolasRojas = GameObject.FindGameObjectsWithTag("BolaRoja");
-        puntaje = 0;
+        GameSystem.tirosRestantes = this.tirosRestantesIniciales;
     }
 
     // Update is called once per frame
     void Update()
     {
-        ActualizarPuntaje();
-        if (!AlMenosUnaBolaBlancaEstaActiva() && estadoJuego == EstadosJuego.EnProceso)
+        this.ActualizarDatos();
+
+        if (!this.AlMenosUnaBolaBlancaEstaActiva() && GameSystem.tirosRestantes > 0 && GameSystem.estadoJuego != EstadosJuego.Gano)
         {
-            retrasoNivelAcabado = DateTime.Now.AddSeconds(1);
-            estadoJuego = EstadosJuego.Gano;
+            this.retrasoNivelAcabado = DateTime.Now.AddSeconds(1);
+            GameSystem.estadoJuego = EstadosJuego.Gano;
         }
 
-        if (estadoJuego == EstadosJuego.Gano && DateTime.Now >= retrasoNivelAcabado && !eventoGanarActivado)
+        if (GameSystem.estadoJuego == EstadosJuego.Gano && DateTime.Now >= this.retrasoNivelAcabado && !this.eventoGanarActivado)
         {
-            menuNivelComletado.SetActive(true);
-            eventoGanarActivado = true;
+            this.menuNivelComletado.SetActive(true);
+            this.eventoGanarActivado = true;
         }
 
-        if (!AlMenosUnaBolaRojaEstaActiva() && estadoJuego == EstadosJuego.EnProceso)
+        if ((!this.AlMenosUnaBolaRojaEstaActiva() || GameSystem.tirosRestantes <= 0) && GameSystem.estadoJuego == EstadosJuego.EnProceso)
         {
-            retrasoNivelAcabado = DateTime.Now.AddSeconds(1);
-            estadoJuego = EstadosJuego.Perdio;
+            this.retrasoNivelAcabado = GameSystem.tirosRestantes > 0 ? DateTime.Now.AddSeconds(1) : DateTime.Now.AddSeconds(11);
+            GameSystem.estadoJuego = EstadosJuego.Perdio;
         }
 
-        if (estadoJuego == EstadosJuego.Perdio && DateTime.Now >= retrasoNivelAcabado && !eventoPerderActivado)
+        if (GameSystem.estadoJuego == EstadosJuego.Perdio && (DateTime.Now >= this.retrasoNivelAcabado || tirosRestantes < 0) && !this.eventoPerderActivado)
         {
-            menuPerdiste.SetActive(true);
-            eventoPerderActivado = true;
+            this.menuPerdiste.SetActive(true);
+            this.eventoPerderActivado = true;
         }
     }
 
     bool AlMenosUnaBolaBlancaEstaActiva()
     {
-        foreach(GameObject bolaBlanca in bolasBlancas)
+        foreach(GameObject bolaBlanca in this.bolasBlancas)
         {
             if (bolaBlanca.activeSelf) { return true; }
         }
@@ -72,7 +90,7 @@ public class GameSystem : MonoBehaviour
 
     bool AlMenosUnaBolaRojaEstaActiva()
     {
-        foreach(GameObject bolaRoja in bolasRojas)
+        foreach(GameObject bolaRoja in this.bolasRojas)
         {
             if (bolaRoja.activeSelf) { return true; }
         }
@@ -80,12 +98,9 @@ public class GameSystem : MonoBehaviour
         return false;
     }
 
-
-    void ActualizarPuntaje()
-    {    
-        if (puntajeText != null)
-        {
-            puntajeText.text = "Puntaje: " + puntaje.ToString() + "/" + puntajeObjetivo.ToString();
-        }
+    void ActualizarDatos()
+    {
+        this.bolasBlancasRestantesText.text = "Bolas Blancas Restantes: " + this.BolasBlancasRestantes;
+        this.tirosRestantesText.text = "Tiros Restantes: " + GameSystem.tirosRestantes;
     }
 }
