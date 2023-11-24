@@ -40,6 +40,8 @@ public class BallController : MonoBehaviour
 
             this.objetoSeleccionadoRigidBody.useGravity = true;
             this.objetoSeleccionadoRigidBody.AddForce(fuerza * this.multiplicadorFuerza);
+
+            GameSystem.tirosRestantes--;
         }
     }
 }
