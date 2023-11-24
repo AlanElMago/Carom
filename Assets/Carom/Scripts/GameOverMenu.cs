@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     public GameObject menuNivelPerdido;
-    public SceneAsset actualNivel; 
     
     public void Reiniciar(){
         Time.timeScale = 1f;

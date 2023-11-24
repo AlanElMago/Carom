@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using TMPro; 
 using UnityEngine;
 
 public class GameSystem : MonoBehaviour
@@ -15,19 +16,25 @@ public class GameSystem : MonoBehaviour
     private bool eventoGanarActivado = false;
     private bool eventoPerderActivado = false;
 
+    public static int puntaje;
+
     [SerializeField] GameObject menuNivelComletado;
     [SerializeField] GameObject menuPerdiste;
+    [SerializeField] TextMeshProUGUI puntajeText;
+    [SerializeField] int puntajeObjetivo;
 
     // Start is called before the first frame update
     void Start()
     {
         this.bolasBlancas = GameObject.FindGameObjectsWithTag("BolaBlanca");
         this.bolasRojas = GameObject.FindGameObjectsWithTag("BolaRoja");
+        puntaje = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        ActualizarPuntaje();
         if (!AlMenosUnaBolaBlancaEstaActiva() && estadoJuego == EstadosJuego.EnProceso)
         {
             retrasoNivelAcabado = DateTime.Now.AddSeconds(1);
@@ -71,5 +78,14 @@ public class GameSystem : MonoBehaviour
         }
 
         return false;
+    }
+
+
+    void ActualizarPuntaje()
+    {    
+        if (puntajeText != null)
+        {
+            puntajeText.text = "Puntaje: " + puntaje.ToString() + "/" + puntajeObjetivo.ToString();
+        }
     }
 }
