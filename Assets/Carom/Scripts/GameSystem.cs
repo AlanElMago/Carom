@@ -27,6 +27,8 @@ public class GameSystem : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI bolasBlancasRestantesText;
     [SerializeField] TextMeshProUGUI tirosRestantesText;
+    [SerializeField] AudioSource audioAplausos;
+    [SerializeField] AudioSource audioAbucheos;
 
     private int BolasBlancasRestantes {
         get
@@ -98,6 +100,7 @@ public class GameSystem : MonoBehaviour
     {
         if (GameSystem.tirosRestantes < 0) {
             this.menuPerdiste.SetActive(true);
+            audioAbucheos.Play(); 
             GameSystem.estadoJuego = GameSystem.EstadosJuego.Terminado;
             return;
         }
@@ -113,11 +116,13 @@ public class GameSystem : MonoBehaviour
 
         if (AlMenosUnaBolaBlancaEstaActiva()) {
             this.menuPerdiste.SetActive(true);
+            audioAbucheos.Play(); 
             GameSystem.estadoJuego = GameSystem.EstadosJuego.Terminado;
             return;
         }
 
         this.menuNivelComletado.SetActive(true); 
+        audioAplausos.Play();
         GameSystem.estadoJuego = GameSystem.EstadosJuego.Terminado;
     }
 
