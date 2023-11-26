@@ -41,6 +41,10 @@ public class BallController : MonoBehaviour
             this.objetoSeleccionadoRigidBody.useGravity = true;
             this.objetoSeleccionadoRigidBody.AddForce(fuerza * this.multiplicadorFuerza);
 
+            // No cambien el orden de los Audio Sources en el prefab de la bola roja, porfas 😭
+            this.objetoSeleccionado.GetComponents<AudioSource>()[1].time = 0.1f;
+            this.objetoSeleccionado.GetComponents<AudioSource>()[1].Play();
+
             GameSystem.tirosRestantes--;
         }
     }
