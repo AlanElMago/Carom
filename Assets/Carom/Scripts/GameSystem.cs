@@ -29,6 +29,7 @@ public class GameSystem : MonoBehaviour
     [SerializeField] TextMeshProUGUI tirosRestantesText;
     [SerializeField] AudioSource audioAplausos;
     [SerializeField] AudioSource audioAbucheos;
+    [SerializeField] AudioSource audioNiceShot;
 
     private int BolasBlancasRestantes {
         get
@@ -111,7 +112,7 @@ public class GameSystem : MonoBehaviour
         }
 
         // Verificar si el jugador logró recuperar tiros extras con su último tiro
-        if (tirosRestantes > 0 && AlMenosUnaBolaBlancaEstaActiva()) {
+        if (tirosRestantes > 0 && AlMenosUnaBolaBlancaEstaActiva() && AlMenosUnaBolaRojaEstaActiva()) {
             GameSystem.estadoJuego = GameSystem.EstadosJuego.EnProceso;
         }
 
@@ -129,6 +130,11 @@ public class GameSystem : MonoBehaviour
 
         this.menuNivelComletado.SetActive(true); 
         audioAplausos.Play();
+
+        if (SeCompletoNivelEnUnTiro()) {
+            audioNiceShot.Play();
+        }
+
         GameSystem.estadoJuego = GameSystem.EstadosJuego.Terminado;
     }
 
@@ -136,5 +142,10 @@ public class GameSystem : MonoBehaviour
     {
         this.bolasBlancasRestantesText.text = "Bolas Blancas Restantes: " + this.BolasBlancasRestantes;
         this.tirosRestantesText.text = "Tiros Restantes: " + GameSystem.tirosRestantes;
+    }
+
+    bool SeCompletoNivelEnUnTiro()
+    {
+        return GameSystem.tirosRestantes == this.tirosRestantesIniciales + this.recuperacionTiros * GameSystem.bolasBlancas.Count() - 1;
     }
 }

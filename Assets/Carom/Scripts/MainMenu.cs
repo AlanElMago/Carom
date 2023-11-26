@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro; 
 using System;
 
-public class menu : MonoBehaviour
+public class Menu : MonoBehaviour
 {
     private int nivelActual = 1;
     public string nombreNivel = "Nivel1";
