@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuNivelCompletado: {fileID: 48937783}
-  siguienteNivel: {fileID: 102900000, guid: 155dc563201f69d47865d2f41dfcb79f, type: 3}
+  siguienteNivel: Nivel5
 --- !u!1001 &54576000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1428,8 +1428,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 396670133}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.2721919, y: -0.63831896, z: -0.25984886, w: 0.67152005}
-  m_LocalPosition: {x: 404.2233, y: -208.58713, z: -122.68791}
+  m_LocalRotation: {x: -0.13274911, y: -0.17031465, z: -0.02399364, w: 0.9761121}
+  m_LocalPosition: {x: 613.35706, y: -329.64136, z: -374.47394}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

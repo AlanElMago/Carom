@@ -1643,7 +1643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuNivelCompletado: {fileID: 421186881}
-  siguienteNivel: {fileID: 102900000, guid: 85772d7a43bdaf848bdeece1690ee84b, type: 3}
+  siguienteNivel: Nivel3
 --- !u!114 &421186884
 MonoBehaviour:
   m_ObjectHideFlags: 0
