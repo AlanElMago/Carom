@@ -16,6 +16,7 @@ public class BallController : MonoBehaviour
     {
         // Mouse click izquierdo presionado
         if ( Input.GetMouseButtonDown(0) == true ) {
+            this.objetoSeleccionado = null;
             this.posicionInicialMouse = Input.mousePosition;
             Ray rayo = this.camaraPrincipal.ScreenPointToRay(Input.mousePosition);
 
