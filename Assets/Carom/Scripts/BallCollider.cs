@@ -23,6 +23,7 @@ public class BallCollider : MonoBehaviour
 
             nuevaBolaRojaRigidBody.AddForce(bolaRojaRigidBody.velocity * this.multiplicadorFuerzaColision);
             sonidoConversion.Play();
+            nuevaBolaRoja.GetComponentInChildren<ParticleSystem>().Play();
 
             GameSystem.tirosRestantes += GameSystem._recuperacionTiros;
             GameSystem.bolasRojas.Add(nuevaBolaRoja);

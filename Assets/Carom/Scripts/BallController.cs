@@ -16,6 +16,7 @@ public class BallController : MonoBehaviour
     {
         // Mouse click izquierdo presionado
         if ( Input.GetMouseButtonDown(0) == true ) {
+            this.objetoSeleccionado = null;
             this.posicionInicialMouse = Input.mousePosition;
             Ray rayo = this.camaraPrincipal.ScreenPointToRay(Input.mousePosition);
 
@@ -23,13 +24,13 @@ public class BallController : MonoBehaviour
                 this.objetoSeleccionado = rayoAcertado.transform;
             }
 
-            if ( objetoSeleccionado.CompareTag("BolaRoja") ) {
+            if ( objetoSeleccionado != null && objetoSeleccionado.CompareTag("BolaRoja") ) {
                 this.objetoSeleccionadoRigidBody = this.objetoSeleccionado.GetComponent<Rigidbody>();
             }
         }
 
         // Mouse click izquierdo soltado
-        if ( Input.GetMouseButtonUp(0) == true && objetoSeleccionado.CompareTag("BolaRoja") ) {
+        if ( Input.GetMouseButtonUp(0) == true && objetoSeleccionado != null && objetoSeleccionado.CompareTag("BolaRoja") ) {
             float rotacionCamaraPrincipalY = this.camaraPrincipal.transform.eulerAngles.y;
             Vector3 posicionFinalMouse = Input.mousePosition;
             Vector3 distancia = this.posicionInicialMouse - posicionFinalMouse;
@@ -40,6 +41,10 @@ public class BallController : MonoBehaviour
 
             this.objetoSeleccionadoRigidBody.useGravity = true;
             this.objetoSeleccionadoRigidBody.AddForce(fuerza * this.multiplicadorFuerza);
+
+            // No cambien el orden de los Audio Sources en el prefab de la bola roja, porfas 😭
+            this.objetoSeleccionado.GetComponents<AudioSource>()[1].time = 0.1f;
+            this.objetoSeleccionado.GetComponents<AudioSource>()[1].Play();
 
             GameSystem.tirosRestantes--;
         }
