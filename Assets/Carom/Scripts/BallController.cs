@@ -23,13 +23,13 @@ public class BallController : MonoBehaviour
                 this.objetoSeleccionado = rayoAcertado.transform;
             }
 
-            if ( objetoSeleccionado.CompareTag("BolaRoja") ) {
+            if ( objetoSeleccionado != null && objetoSeleccionado.CompareTag("BolaRoja") ) {
                 this.objetoSeleccionadoRigidBody = this.objetoSeleccionado.GetComponent<Rigidbody>();
             }
         }
 
         // Mouse click izquierdo soltado
-        if ( Input.GetMouseButtonUp(0) == true && objetoSeleccionado.CompareTag("BolaRoja") ) {
+        if ( Input.GetMouseButtonUp(0) == true && objetoSeleccionado != null && objetoSeleccionado.CompareTag("BolaRoja") ) {
             float rotacionCamaraPrincipalY = this.camaraPrincipal.transform.eulerAngles.y;
             Vector3 posicionFinalMouse = Input.mousePosition;
             Vector3 distancia = this.posicionInicialMouse - posicionFinalMouse;
