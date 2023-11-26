@@ -110,6 +110,11 @@ public class GameSystem : MonoBehaviour
             this.ganaUltimoTiro = true;
         }
 
+        // Verificar si el jugador logró recuperar tiros extras con su último tiro
+        if (tirosRestantes > 0 && AlMenosUnaBolaBlancaEstaActiva()) {
+            GameSystem.estadoJuego = GameSystem.EstadosJuego.EnProceso;
+        }
+
         if (DateTime.Now < tiempoExtra) {
             return;
         }
@@ -117,6 +122,7 @@ public class GameSystem : MonoBehaviour
         if (AlMenosUnaBolaBlancaEstaActiva()) {
             this.menuPerdiste.SetActive(true);
             audioAbucheos.Play(); 
+
             GameSystem.estadoJuego = GameSystem.EstadosJuego.Terminado;
             return;
         }
