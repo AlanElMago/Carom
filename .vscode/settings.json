@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Carom.sln"
+    "dotnet.defaultSolution": "Carom2.sln"
 }
