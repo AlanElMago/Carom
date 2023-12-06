@@ -1428,8 +1428,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 396670133}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.13274911, y: -0.17031465, z: -0.02399364, w: 0.9761121}
-  m_LocalPosition: {x: 613.35706, y: -329.64136, z: -374.47394}
+  m_LocalRotation: {x: 0.27792734, y: 0.2584371, z: 0.07791788, w: -0.92189777}
+  m_LocalPosition: {x: 21.841642, y: -8.299765, z: -18.248016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2224,6 +2224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camaraPrincipal: {fileID: 624702795}
   multiplicadorFuerza: 1.5
+  puntoPrefab: {fileID: 796814540}
 --- !u!114 &624702798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2492,6 +2493,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c422a45ea6c66b74497e5d527da8c6a5, type: 3}
+--- !u!1 &796814540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1649208478129828866, guid: c422a45ea6c66b74497e5d527da8c6a5, type: 3}
+  m_PrefabInstance: {fileID: 796814539}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &811919386
 GameObject:
   m_ObjectHideFlags: 0
